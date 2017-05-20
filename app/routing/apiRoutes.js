@@ -17,7 +17,7 @@ router.post("/api/friends", function(req, res) {
     var compat = 0;
     for(var j = 0; j < 10; j++)
     {
-      compat += Math.abs(friendArray[i].scores[j] - newbie.scores[j]);
+      compat += Math.abs(parseInt(friendArray[i].scores[j]) - parseInt(newbie.scores[j]));
     }
     if(compat < bestCompatibility)
     {
