@@ -29,10 +29,6 @@
     <h2>Survey Questions</h2>
     <hr/>
     <form id="surveyForm">
-      about
-        name
-        photoLink
-      questions(1-10)
       <h3>About You</h3>
       <div class="form-group">
         <label for="name">Name (required)</label>
@@ -41,6 +37,152 @@
       <div class="form-group">
         <label for="image">Image (required)</label>
         <input type="text" id="image" class="form-control" required>
+      </div>
+      <hr/>
+      Answer the following questions using 1 for strongly disagree and 5 for strongly agree.
+      <hr/>
+      <div class="form-group">
+        <label for="q1">I am easily bored.</label>
+        <div class="row">
+        <div class="col-sm-4">
+          <select id="q1" class="form-control" required>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="q2">I don't like to sit still.</label>
+        <div class="row">
+        <div class="col-sm-4">
+          <select id="q2" class="form-control" required>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="q3">I enjoy fine things.</label>
+        <div class="row">
+        <div class="col-sm-4">
+          <select id="q3" class="form-control" required>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="q4">I spend a lot of time in contemplation.</label>
+        <div class="row">
+        <div class="col-sm-4">
+          <select id="q4" class="form-control" required>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="q5">I enjoy the silence.</label>
+        <div class="row">
+        <div class="col-sm-4">
+          <select id="q5" class="form-control" required>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="q6">I have a few close friends.</label>
+        <div class="row">
+        <div class="col-sm-4">
+          <select id="q6" class="form-control" required>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="q7">My beliefs are based on facts.</label>
+        <div class="row">
+        <div class="col-sm-4">
+          <select id="q7" class="form-control" required>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="q8">I empathize well with people.</label>
+        <div class="row">
+        <div class="col-sm-4">
+          <select id="q8" class="form-control" required>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="q9">Spending time in crowds exhausts me.</label>
+        <div class="row">
+        <div class="col-sm-4">
+          <select id="q9" class="form-control" required>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="q10">I'm willing to make sacrifices for my friends.</label>
+        <div class="row">
+        <div class="col-sm-4">
+          <select id="q10" class="form-control" required>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="submit" id="formSubmit" value="Submit" class="btn btn-lg btn-primary">
       </div>
     </form>
   </div>
@@ -51,5 +193,31 @@
   </div>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    $("#surveyForm").submit(function(event) {
+      event.preventDefault();
+
+      var newbie = {
+        name: $("#name").val(),
+        photo: $("#image").val(),
+        scores: [
+          $("#q1").val(),
+          $("#q2").val(),
+          $("#q3").val(),
+          $("#q4").val(),
+          $("#q5").val(),
+          $("#q6").val(),
+          $("#q7").val(),
+          $("#q8").val(),
+          $("#q9").val(),
+          $("#q10").val()
+        ]
+      };
+
+      $.post("/api/friends", newbie).done(function(data) {
+
+      });
+    });
+  </script>
 </body>
 </html>
