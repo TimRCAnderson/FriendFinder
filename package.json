@@ -1,0 +1,29 @@
+{
+  "name": "friendfinder",
+  "version": "1.0.0",
+  "description": "A compatibility based friend-finding application to match people up based on interests.",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TimRCAnderson/FriendFinder.git"
+  },
+  "keywords": [
+    "friends",
+    "quiz"
+  ],
+  "author": "Timothy Anderson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TimRCAnderson/FriendFinder/issues"
+  },
+  "homepage": "https://github.com/TimRCAnderson/FriendFinder#readme"
+}
