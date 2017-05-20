@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -191,8 +194,27 @@
       <a href="/api/friends">API Friends List</a>
     </div>
   </div>
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Your New Friend</h4>
+        </div>
+        <div class="modal-body text-center" id="newFriend">
+          <h3 id="friendName"></h3>
+          <img class="img-responsive" id="friendImg" src="" alt="your friend's picture"></img>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
   <script>
     $("#surveyForm").submit(function(event) {
       event.preventDefault();
@@ -201,22 +223,26 @@
         name: $("#name").val(),
         photo: $("#image").val(),
         scores: [
-          $("#q1").val(),
-          $("#q2").val(),
-          $("#q3").val(),
-          $("#q4").val(),
-          $("#q5").val(),
-          $("#q6").val(),
-          $("#q7").val(),
-          $("#q8").val(),
-          $("#q9").val(),
-          $("#q10").val()
+          parseInt($("#q1").val()),
+          parseInt($("#q2").val()),
+          parseInt($("#q3").val()),
+          parseInt($("#q4").val()),
+          parseInt($("#q5").val()),
+          parseInt($("#q6").val()),
+          parseInt($("#q7").val()),
+          parseInt($("#q8").val()),
+          parseInt($("#q9").val()),
+          parseInt($("#q10").val())
         ]
       };
 
       $.post("/api/friends", newbie).done(function(data) {
-
+        console.log(data);
+        $("#friendName").text(data.name);
+        $("#friendImg").attr("src", data.photo);
+        $("#myModal").modal("toggle");
       });
+
     });
   </script>
 </body>

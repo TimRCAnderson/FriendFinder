@@ -11,24 +11,23 @@ router.post("/api/friends", function(req, res) {
   var newbie = req.body;
   var bestFriend = {};
   var bestCompatibility = 50;
-  console.log(router.friendArray);
-  for(var i = 0; i < router.friendArray.length; i++)
+  var friendArray = router.friendArray;
+  for(var i = 0; i < friendArray.length; i++)
   {
     var compat = 0;
-    for(var j = 0; j < 10; i++)
+    for(var j = 0; j < 10; j++)
     {
-      compat += Math.abs(router.friendArray[i].scores[j] - newbie.scores[j]);
+      compat += Math.abs(friendArray[i].scores[j] - newbie.scores[j]);
     }
     if(compat < bestCompatibility)
     {
-      bestFriend = router.friendArray[i];
+      bestFriend = friendArray[i];
       bestCompatibility = compat;
     }
   }
   res.json(bestFriend);
+  console.log(bestFriend);
   router.friendArray.push(newbie);
-  console.log(newbie);
-  console.log(path.join(__dirname, "../data/friends.js"));
   fs.writeFile(path.join(__dirname, "../data/friends.js"), JSON.stringify(router.friendArray), function(err) {
     if(err) throw err;
   });
